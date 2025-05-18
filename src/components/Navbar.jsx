@@ -32,7 +32,7 @@ export default function Navbar() {
     };
 
     const hoveredLinkStyle = {
-        color: '#bb86fc', // ungu muda saat hover
+        color: '#bb86fc',
     };
 
     const baseButtonStyle = {
@@ -61,58 +61,59 @@ export default function Navbar() {
             WebkitBackdropFilter: 'blur(10px)',
             borderBottom: '1px solid rgba(255, 255, 255, 0.1)',
         }}>
-            <h2
-                style={{
-                    margin: 0,
-                    marginLeft: '20px',
-                    color: 'white',
-                    position: 'relative',
-                    animation: 'glow 2.5s ease-in-out infinite',
-                }}
-            >
+            <h2 style={{
+                margin: 0,
+                marginLeft: '20px',
+                color: 'white',
+                position: 'relative',
+                animation: 'glow 2.5s ease-in-out infinite',
+            }}>
                 <Link to="/" style={{ color: 'inherit', textDecoration: 'none' }}>
                     MyICO
                 </Link>
 
                 <style>
                     {`
-      @keyframes glow {
-        0%, 100% {
-          text-shadow:
-            0 0 5px rgba(187, 134, 252, 0.7),
-            0 0 10px rgba(187, 134, 252, 0.5),
-            0 0 20px rgba(187, 134, 252, 0.3);
-        }
-        50% {
-          text-shadow:
-            0 0 8px rgba(187, 134, 252, 1),
-            0 0 15px rgba(187, 134, 252, 0.8),
-            0 0 25px rgba(187, 134, 252, 0.6);
-        }
-      }
-    `}
+                    @keyframes glow {
+                        0%, 100% {
+                            text-shadow:
+                                0 0 5px rgba(187, 134, 252, 0.7),
+                                0 0 10px rgba(187, 134, 252, 0.5),
+                                0 0 20px rgba(187, 134, 252, 0.3);
+                        }
+                        50% {
+                            text-shadow:
+                                0 0 8px rgba(187, 134, 252, 1),
+                                0 0 15px rgba(187, 134, 252, 0.8),
+                                0 0 25px rgba(187, 134, 252, 0.6);
+                        }
+                    }
+                    `}
                 </style>
             </h2>
 
-
             <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-                {['/', '/about', '/contact', '/ICOPage'].map((path, idx) => {
-                    const text = ['Home', 'About', 'Contact', 'Token Info'][idx];
-                    return (
-                        <Link
-                            key={path}
-                            to={path}
-                            style={{
-                                ...baseLinkStyle,
-                                ...(hoveredLink === path ? hoveredLinkStyle : {}),
-                            }}
-                            onMouseEnter={() => setHoveredLink(path)}
-                            onMouseLeave={() => setHoveredLink(null)}
-                        >
-                            {text}
-                        </Link>
-                    );
-                })}
+                {[
+                    { path: '/', label: 'Home' },
+                    { path: '/about', label: 'About' },
+                    { path: '/contact', label: 'Contact' },
+                    { path: '/ICOPage', label: 'Token Info' },
+                    { path: '/staking', label: 'Staking' },
+                    { path: '/tokenDashboard', label: 'Token Dashboard' },
+                ].map(({ path, label }) => (
+                    <Link
+                        key={path}
+                        to={path}
+                        style={{
+                            ...baseLinkStyle,
+                            ...(hoveredLink === path ? hoveredLinkStyle : {}),
+                        }}
+                        onMouseEnter={() => setHoveredLink(path)}
+                        onMouseLeave={() => setHoveredLink(null)}
+                    >
+                        {label}
+                    </Link>
+                ))}
 
                 {account ? (
                     <span style={{ color: '#61dafb' }}>
